@@ -1,5 +1,5 @@
 import csv
-from src.mapper.drug_mapper import drug_mapper
+from drug_analysis_pipeline.src.mapper.drug_mapper import drug_mapper
 
 DELIMITER = ","
 

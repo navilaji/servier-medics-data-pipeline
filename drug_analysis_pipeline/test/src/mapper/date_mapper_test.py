@@ -1,5 +1,5 @@
 import pytest
-from src.mapper.date_mapper import date_mapper
+from drug_analysis_pipeline.src.mapper.date_mapper import date_mapper
 
 def test_date_pattern_matching():
     assert date_mapper.match_pattern("2020-01-01","%Y-%m-%d")==True

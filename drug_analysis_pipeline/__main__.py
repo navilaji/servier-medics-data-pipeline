@@ -1,10 +1,10 @@
 import json
 import sys
 import logging
-from src.parser.drug_parser import drug_parser
-from src.parser.publication_parser import publication_parser
-from src.util.adhoc_analysis import adhoc_analyser
-from src.service.publication_info_service import publication_info_service
+from drug_analysis_pipeline.src.parser.drug_parser import drug_parser
+from drug_analysis_pipeline.src.parser.publication_parser import publication_parser
+from drug_analysis_pipeline.src.util.adhoc_analysis import adhoc_analyser
+from drug_analysis_pipeline.src.service.publication_info_service import publication_info_service
 
 logging.basicConfig(level=logging.INFO)
 

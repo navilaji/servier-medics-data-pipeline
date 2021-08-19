@@ -28,6 +28,10 @@ command line to run the pipeline:
     resources/clinical_trials.csv \
     report.json
 
+6. Tests:
+I have added some tests under the test directory, and they get run by the pytest.
+
+
 The pipeline takes 5 arguments, here's the list:
     1- drugs file path
     2- first pubmed file path (csv or json)

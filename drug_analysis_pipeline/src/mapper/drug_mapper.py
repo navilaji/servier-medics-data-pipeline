@@ -1,4 +1,4 @@
-from src.model.drug import Drug
+from drug_analysis_pipeline.src.model.drug import Drug
 class DrugMapper:
     '''
     This class is responsible for mapping the drug rows in csv files

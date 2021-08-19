@@ -3,8 +3,8 @@ import json5
 import logging
 from abc import ABCMeta, abstractmethod
 from io import StringIO
-from src.util.string_util import string_util
-from src.mapper.publication_mapper import publication_mapper
+from drug_analysis_pipeline.src.util.string_util import string_util
+from drug_analysis_pipeline.src.mapper.publication_mapper import publication_mapper
 
 DELIMITER = ","
 logging.basicConfig(level=logging.INFO)

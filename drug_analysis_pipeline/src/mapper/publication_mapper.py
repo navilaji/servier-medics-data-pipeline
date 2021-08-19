@@ -1,4 +1,4 @@
-from src.model.publication import Publication
+from drug_analysis_pipeline.src.model.publication import Publication
 from .date_mapper import date_mapper
 
 class PublicationMapper:

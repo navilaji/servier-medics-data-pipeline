@@ -1,4 +1,6 @@
 .idea/workspace.xml
 my_venv/
 __pycache__/
-
+dist
+drug_analysis_pipeline.egg-info
+report.json

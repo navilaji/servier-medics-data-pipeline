@@ -1,2 +1,4 @@
 json5
-pytest
+pytest==6.2.4
+setuptools==47.1.0
+wheel

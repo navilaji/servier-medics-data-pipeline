@@ -1,8 +1,8 @@
-from src.parser.publication_parser import publication_parser
+from drug_analysis_pipeline.src.parser.publication_parser import publication_parser
 
-PUBMED_CSV = "test/resources/pubmed.csv"
-PUBMED_JSON = "test/resources/pubmed.json"
-CL_TRIAL_CSV = "test/resources/clinical_trials.csv"
+PUBMED_CSV = "drug_analysis_pipeline/test/resources/pubmed.csv"
+PUBMED_JSON = "drug_analysis_pipeline/test/resources/pubmed.json"
+CL_TRIAL_CSV = "drug_analysis_pipeline/test/resources/clinical_trials.csv"
 
 def test_parsing_pubmed_csv():
     pubmeds = publication_parser.parse_publication_file(PUBMED_CSV)

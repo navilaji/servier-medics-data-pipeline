@@ -1,7 +1,7 @@
-from src.service.publication_info_service import publication_info_service as pub_service
-from src.util.adhoc_analysis import adhoc_analyser
-from src.model.publication import Publication
-from src.model.drug import Drug
+from drug_analysis_pipeline.src.service.publication_info_service import publication_info_service as pub_service
+from drug_analysis_pipeline.src.util.adhoc_analysis import adhoc_analyser
+from drug_analysis_pipeline.src.model.publication import Publication
+from drug_analysis_pipeline.src.model.drug  import Drug
 
 #test data
 DRUGS = [Drug("0","DRUG0"),Drug("1","DRUG1"),Drug("2","DRUG2"),Drug("3","DRUG3"),Drug("4","DRUG4")]
