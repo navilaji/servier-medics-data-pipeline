@@ -4,3 +4,5 @@ __pycache__/
 dist
 drug_analysis_pipeline.egg-info
 report.json
+build
+.eggs

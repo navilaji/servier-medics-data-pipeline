@@ -52,19 +52,28 @@ Dans ce projet on a utilisé les APIs native du python afin de lire les données
 Par contre dans le cas ou iya plusieurs fichiers avec des grosse tailles, la solution plus convenient sera le python spark ou pyspark avec les APIs autour de ça.
 Les modifs que je mettrai en place seront:
 
-1- utiliser le spark.read.csv pour parser les fichier de csv. Quand on appel cet API , on peut passer plusieurs parametres, comme:
-    - le schema d'objet à lire: spark.read.csv(filepath, schema=schema). Donc on peut preciser le type de data qu'on veut parser, par exemple Drug ou une Publication etc.
-    - le schema peut etre defini par le StructType, par exemple: 
-        drugs_schema = StructType([StructField("id", StringType(), True),
-                                    StructField("name", StringType(), True)])
+    1- utiliser le spark.read.csv pour parser les fichier de csv. Quand on appel cet API , on peut passer plusieurs parametres, comme:
+        - le schema d'objet à lire: spark.read.csv(filepath, schema=schema). Donc on peut preciser le type de data qu'on veut parser, par exemple Drug ou une Publication etc.
+        - le schema peut etre defini par le StructType, par exemple: 
+            drugs_schema = StructType([StructField("id", StringType(), True),
+                                        StructField("name", StringType(), True)])
+            
+            donc on peut preciser le model à lire avec le StructType
         
-        donc on peut preciser le model à lire avec le StructType
+        - on peut skipper le header de fichier csv avec l'option dans spark.read: spark.read.option('header', 'true')
+    2- utiliser le spark.read.json pour parser les fichier de json
+    3- dans l'etape ou on crée le graphe, on peut utiliser les methods de dataframes afin de filtrer, mapper, créer des nouvelles colons, etc dans chaque dataframe.
+    4- avec le "join" de dataframe on peut trouver le lien entre drugs et le titre de publication plus rapidement au lieu de traverser toutes les données  
+    5- dans la classe ad-hoc analysis on peut utiliser le spark map-reduce afin de trouver le journal avec le maximum score.
+    6- ecrire le resultat dans un fichier json:
+        result_dataframe.write.format('json').save(result_filepath)
+
+8. Executer le pipeline dans un dag:
+Je propose deux methods afin de lancer le pipeline dans un dag d'airflow/
     
-    - on peut skipper le header de fichier csv avec l'option dans spark.read: spark.read.option('header', 'true')
-2- utiliser le spark.read.json pour parser les fichier de json
-3- dans l'etape ou on crée le graphe, on peut utiliser les methods de dataframes afin de filtrer, mapper, créer des nouvelles colons, etc dans chaque dataframe.
-4- avec le "join" de dataframe on peut trouver le lien entre drugs et le titre de publication plus rapidement au lieu de traverser toutes les données  
-5- dans la classe ad-hoc analysis on peut utiliser le spark map-reduce afin de trouver le journal avec le maximum score.
-6- ecrire le resultat dans un fichier json:
-    result_dataframe.write.format('json').save(result_filepath)
-7
+    1- packager le module avec la command : python setup.py bdist_wheel, et puis installer le package dist/drug_analysis_pipeline-0.0.1-py3-none-any.whl
+    dans l'environment d'airflow, et puis ajouter le python package installer au PYTHONPATH. Et puis on peut tout simplement lancer le pipeline avec 
+    l'api PythonOperator ou le BashOperator.
+    
+    2- Créer une image docker de notre module à partir de fichier Dockerfile, et puis executer le l'image à partir avec le KubernetesPodOperator.  
+    
