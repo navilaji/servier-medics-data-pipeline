@@ -42,25 +42,25 @@ def run_pipeline(drugs_file, pubmed_files, clinical_trial_files, result_filename
     :param result_filename: The name of the output file
     :return: void
     '''
-    #parse drugs
+
     drugs = drug_parser.parse_drugs_from_csv(drugs_file)
     logging.info(drugs)
-    #parse pubmeds
+
     pubmeds = parse_publication_files(pubmed_files)
-    #parse clinical trials
+
     cl_trials = parse_publication_files(clinical_trial_files)
-    #create the graph
+
     result_graph = publication_info_service.generate_drug_pub_graph(drugs= drugs, pubmeds= pubmeds, cl_trials= cl_trials)
-    #write the json result into a file
+
     write_json_result(result_graph, result_filename)
     logging.info(f"The result has been written into the following file: {result_filename}")
     logging.info(f"The top mentioning journal is : {adhoc_analyser.find_best_publisher(publication_graph= result_graph)}")
 
 if __name__ == '__main__':
-    # parsing the arguments
+
     drugs_file = sys.argv[1]
     pubmed_files = [sys.argv[2],sys.argv[3]]
     clinical_trial_files = [sys.argv[4]]
     result_filename = sys.argv[5]
-    #running the pipeline
+
     run_pipeline(drugs_file, pubmed_files, clinical_trial_files, result_filename)
